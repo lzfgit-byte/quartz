@@ -1,0 +1,14 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: power-job
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.url:192.168.0.220}:${nacos.port:8848}
+        username: ${nacos.name:power}
+        password: ${nacos.password:power#220nacos}
+        file-extension: yml
+        namespace: ${nacos.namespace:power}
+        shared-configs: ${nacos.db.config:datasource-power-job.yml},discovery.yml,common.yml,resource-ignored.yml,kafka.yml,redis.yml

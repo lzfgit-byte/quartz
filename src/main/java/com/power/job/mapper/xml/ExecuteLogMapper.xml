@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.job.mapper.ExecuteLogMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.power.job.entity.ExecuteLog">
+        <id column="id" property="id"/>
+        <result column="job_id" property="jobId"/>
+        <result column="job_name" property="jobName"/>
+        <result column="job_group" property="jobGroup"/>
+        <result column="execute_start_time" property="executeStartTime"/>
+        <result column="execute_res" property="executeRes"/>
+        <result column="execute_res_detail" property="executeResDetail"/>
+        <result column="execute_end_time" property="executeEndTime"/>
+        <result column="execute_param" property="executeParam"/>
+        <result column="job_type" property="jobType"/>
+    </resultMap>
+</mapper>

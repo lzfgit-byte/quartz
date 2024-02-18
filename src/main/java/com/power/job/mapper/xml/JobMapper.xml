@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.job.mapper.JobMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="jobResult" type="com.power.job.entity.PowerJob">
+        <id column="id" property="id"/>
+        <result column="job_name" property="jobName"/>
+        <result column="job_group" property="jobGroup"/>
+        <result column="job_type" property="jobType"/>
+        <result column="cron" property="cron"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="job_status" property="status"/>
+        <result column="retry_policy" property="retryPolicy"/>
+        <collection property="jobParams" ofType="com.power.job.entity.JobParams">
+            <id property="id" column="jobparam_id" jdbcType="BIGINT"/>
+            <result property="jobId" column="job_id" jdbcType="BIGINT"/>
+            <result property="key" column="job_key" jdbcType="VARCHAR"/>
+            <result property="value" column="job_value" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectOne" resultMap="jobResult">
+        select t.*, d.id 'jobparam_id',d.job_id, d.job_key, d.job_value
+        from job t,
+             job_params d
+        where t.id = d.job_id
+          and t.id = #{id,jdbcType=BIGINT}
+    </select>
+</mapper>
